@@ -1,103 +1,12 @@
-from tkinter import *
+import pygame 
+pygame.init()
 
-window = Tk()
+screen = pygame.display.set_mode([500, 500])
 
-buttons = Frame()
+while True: 
+    screen.fill((255, 255, 255))
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            quit
 
-mainLabel = Label(text = "Sudoku")
-
-b1 = Button(
-    master = buttons,
-    text = "1",
-    bg = "purple",
-    fg = "white",
-    width = 5, 
-    height = 2
-)
-
-b2 = Button(
-    master = buttons,
-    text = "2",
-    bg = "purple",
-    fg = "white",
-    width = 5, 
-    height = 2
-)
-
-b3 = Button(
-    master = buttons,
-    text = "3",
-    bg = "purple",
-    fg = "white",
-    width = 5, 
-    height = 2
-)
-
-b4 = Button(
-    master = buttons,
-    text = "4",
-    bg = "purple",
-    fg = "white",
-    width = 5, 
-    height = 2
-)
-
-b5 = Button(
-    master = buttons,
-    text = "5",
-    bg = "purple",
-    fg = "white",
-    width = 5, 
-    height = 2
-)
-
-b6 = Button(
-    master = buttons,
-    text = "6",
-    bg = "purple",
-    fg = "white",
-    width = 5, 
-    height = 2
-)
-
-b7 = Button(
-    master = buttons,
-    text = "7",
-    bg = "purple",
-    fg = "white",
-    width = 5, 
-    height = 2
-)
-
-b8 = Button(
-    master = buttons,
-    text = "8",
-    bg = "purple",
-    fg = "white",
-    width = 5, 
-    height = 2
-)
-
-b9 = Button(
-    master = buttons,
-    text = "9",
-    bg = "purple",
-    fg = "white",
-    width = 5, 
-    height = 2
-)
-mainLabel.pack()
-
-b1.pack(side = "top")
-b2.pack(side = "top")
-b3.pack(side = "top")
-b4.pack(side = "top")
-b5.pack(side = "top")
-b6.pack(side = "top")
-b7.pack(side = "top")
-b8.pack(side = "top")
-b9.pack(side = "top")
-
-buttons.pack(side = "right")
-
-window.mainloop()
+pygame.quit()
