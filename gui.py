@@ -12,7 +12,8 @@ screen = pygame.display.set_mode([1000, 1000])
 running = True
 
 all_cells = []
-buttons = []
+all_buttons = []
+all_buttons.append(Button(screen, SQUARE_LENGTH, 800, 200, (255, 255, 255), "3", None))
 
 for row in range(9):
     row_of_cells = []
@@ -35,7 +36,9 @@ while running:
     for row in all_cells:
         for cell in row:
             cell.show()
-    
+    for button in all_buttons:
+        button.show()
+
     # pygame.draw.rect(screen, (0, 255, 0) ,pygame.Rect(30, 30, 60, 60))
     pygame.display.flip()
 
