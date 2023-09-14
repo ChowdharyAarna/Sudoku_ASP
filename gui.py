@@ -5,7 +5,9 @@ from button import Button
 
 pygame.init()
 
-
+is_cell_clicked = True
+clicked_cell = None
+button_pressed = None
 WIDTH, HEIGHT = 600,600
 SQUARE_LENGTH = int(WIDTH/9)
 BUTTON_LENGTH = 40
@@ -18,7 +20,7 @@ all_buttons = []
 button_y = 20
 for num in range(9):
     
-    all_buttons.append(Button(screen, BUTTON_LENGTH, 650, button_y, (255, 255, 255), str(num + 1), None))
+    all_buttons.append(Button(screen, BUTTON_LENGTH, 650, button_y, (255, 255, 255), str(num + 1), num, None))
     button_y += 65
 
 for row in range(9):
@@ -39,7 +41,29 @@ while running:
             running=False
             break
         # (x, y)= pygame.mouse.get_pos()
-        # if event.type == pygame.MOUSEBUTTONDOWN:
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if clicked_cell != None:
+                found_it = False
+                for button in all_buttons:
+                    if button.return_rect().collidepoint(event.pos):
+                        # button_pressed = button
+                        clicked_cell.new_num(button.return_num())
+                        clicked_cell.unselect()
+                        clicked_cell = None
+                        found_it = True
+                
+                if found_it == False:
+                    clicked_cell.unselect()
+                    clicked_cell = None
+                
+
+
+            else:
+                for row in all_cells:
+                    for cell in row:
+                        if cell.return_rect().collidepoint(event.pos):
+                            cell.selected()
+                            clicked_cell = cell
             
     screen.fill((0, 0, 0))
     for row in all_cells:

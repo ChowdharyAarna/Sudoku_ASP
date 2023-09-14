@@ -11,6 +11,7 @@ class Cell():
         self.col = col
         self.num = num
         self.color = color
+        self.ogcolor = color
         self.surf = pygame.Surface((self.length, self.length))
         # self.surf.fill(color)
         self.rect = self.surf.get_rect()
@@ -27,5 +28,20 @@ class Cell():
         pygame.draw.rect(self.main_screen, self.color, self.rect, 2)
         if(self.num):
             self.main_screen.blit(self.text_surface, self.rect)
+
+    def return_rect(self):
+        return self.rect
+    
+    def selected(self):
+        self.color = (0, 0, 255)
+        # print(str(self.num))
+    
+    def unselect(self):
+        self.color = self.ogcolor
+    
+    def new_num(self, num):
+        self.num = num + 1
+        self.text_surface = my_font.render(str(self.num), False, (255, 255, 255))
+        self.font_rect = pygame.Rect(self.rect.left + (2 * self.length), self.rect.top + (self.length/2), self.length, self.length)
 
 

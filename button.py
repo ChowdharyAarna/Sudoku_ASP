@@ -4,13 +4,14 @@ pygame.font.init()
 my_font = pygame.font.SysFont('Verdana', 30)
 
 class Button():
-    def __init__(self, main_screen, length, x, y, color, buttonText, onClickFunction):
+    def __init__(self, main_screen, length, x, y, color, buttonText, num, onClickFunction):
         self.main_screen = main_screen,
         self.length = length
         self.x = x
         self.y = y
         self.color = color
         self.buttonText = buttonText
+        self.num = num
         self.onClickFunction = onClickFunction
         
         self.surf = pygame.Surface((self.length, self.length))
@@ -36,3 +37,6 @@ class Button():
 
     def return_text_rect(self):
         return self.font_rect
+    
+    def return_num(self):
+        return self.num
