@@ -4,7 +4,7 @@ pygame.font.init()
 my_font = pygame.font.SysFont('Verdana', 30)
 
 class Cell():
-    def __init__(self, main_screen, length, row, col, num, color):
+    def __init__(self, main_screen, length, row, col, num, color, changable, answer):
         self.main_screen = main_screen
         self.length = length
         self.row = row
@@ -12,6 +12,8 @@ class Cell():
         self.num = num
         self.color = color
         self.ogcolor = color
+        self.changable = changable
+        self.answer = answer
         self.surf = pygame.Surface((self.length, self.length))
         # self.surf.fill(color)
         self.rect = self.surf.get_rect()
@@ -19,15 +21,14 @@ class Cell():
         self.rect.left = col * self.length + 10
         self.rect.top = row * self.length + 10
         if self.num:
-            self.text_surface = my_font.render(str(self.num), False, (255, 255, 255))
-            self.font_rect = pygame.Rect(self.rect.left + (2 * self.length), self.rect.top + (self.length/2), self.length, self.length)
+            self.new_num(self.num - 1, (215, 219, 216))
         
 
     def show(self):
         # screen.blit(self.surf, self.rect)
         pygame.draw.rect(self.main_screen, self.color, self.rect, 2)
         if(self.num):
-            self.main_screen.blit(self.text_surface, self.rect)
+            self.main_screen.blit(self.text_surface, self.font_rect)
 
     def return_rect(self):
         return self.rect
@@ -39,9 +40,16 @@ class Cell():
     def unselect(self):
         self.color = self.ogcolor
     
-    def new_num(self, num):
+    def new_num(self, num, font_color = (255,255,255)):
         self.num = num + 1
-        self.text_surface = my_font.render(str(self.num), False, (255, 255, 255))
-        self.font_rect = pygame.Rect(self.rect.left + (2 * self.length), self.rect.top + (self.length/2), self.length, self.length)
+        self.text_surface = my_font.render(str(self.num), False, font_color)
+        self.font_rect = pygame.Rect(self.rect.left + (self.length/4), self.rect.top + (self.length/5), self.length, self.length)
+
+    def return_changable(self):
+        return self.changable
+
+    def check(self):
+        if self.answer != self.num:
+            self.color = (255, 0, 0)
 
 
