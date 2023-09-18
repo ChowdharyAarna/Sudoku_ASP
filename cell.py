@@ -3,6 +3,8 @@ pygame.font.init()
 
 my_font = pygame.font.SysFont('Verdana', 30)
 
+# creating a class for all the cells 
+
 class Cell():
     def __init__(self, main_screen, length, row, col, num, color, changable, answer):
         self.main_screen = main_screen
@@ -14,19 +16,24 @@ class Cell():
         self.ogcolor = color
         self.changable = changable
         self.answer = answer
+
+        # creating the surface and rectangle of the cell
         self.surf = pygame.Surface((self.length, self.length))
-        # self.surf.fill(color)
         self.rect = self.surf.get_rect()
-        # self.Rect()
+
+        # positioning the cell based on its order in the board
         self.rect.left = col * self.length + 10
         self.rect.top = row * self.length + 10
+
+        # if there is already a designated number
         if self.num:
-            self.new_num(self.num - 1, (215, 219, 216))
+            # display that number
+            self.new_num(self.num - 1)
         
 
     def show(self):
         # screen.blit(self.surf, self.rect)
-        pygame.draw.rect(self.main_screen, self.color, self.rect, 2)
+        pygame.draw.rect(self.main_screen, self.color, self.rect, 4)
         if(self.num):
             self.main_screen.blit(self.text_surface, self.font_rect)
 

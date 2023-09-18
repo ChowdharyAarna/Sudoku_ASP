@@ -33,4 +33,3 @@ def check_one_square(square_row, square_column, unsolved, solved):
     return unsolved[square_row][square_column] == solved[square_row][square_column]
 
 
-# print(check_full_puzzle(unsolved_board, solved_board))

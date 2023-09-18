@@ -3,11 +3,12 @@ pygame.font.init()
 
 my_font = pygame.font.SysFont('Verdana', 30)
 
+# creating a class for all the buttons 
+
 class Button():
-    def __init__(self, main_screen, width, height, x, y, color, buttonText, num, onClickFunction):
+    def __init__(self, main_screen, length, x, y, color, buttonText, num, onClickFunction):
         self.main_screen = main_screen,
-        self.width = width
-        self.height = height
+        self.length = length
         self.x = x
         self.y = y
         self.color = color
@@ -15,18 +16,18 @@ class Button():
         self.num = num
         self.onClickFunction = onClickFunction
         
-        self.surf = pygame.Surface((self.width, self.height))
-        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
-        self.font_rect = pygame.Rect(self.x + (7 * self.width/24), self.y, self.width, self.height)
+
+        # creating the surface and rectangle of the cell
+        self.surf = pygame.Surface((self.length, self.length))
+        self.rect = pygame.Rect(self.x, self.y, self.length, self.length)
+
+        # creating a rectangle to display the font - making sure the number will be in the center
+        self.font_rect = pygame.Rect(self.x + (7 * self.length/24), self.y, self.length, self.length)
         self.surf.fill(self.color)
-        self.text_surface = my_font.render(buttonText, False, (0, 0, 0))
+        self.text_surface = my_font.render(buttonText, False, (255, 255, 255))
 
-    
-    # def show(self):
+    # below are functions to return various values
 
-        # self.main_screen.blit(self.surf, self.rect)
-        # pygame.draw.rect(self.main_screen, self.color, self.rect)
-    
     def return_surf(self):
         return self.surf
     
